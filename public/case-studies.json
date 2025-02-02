@@ -1,0 +1,17 @@
+[
+    {
+      "id": 1,
+      "title": "Case Study A",
+      "summary": "Short description of Case Study A",
+      "metadata_uri": "/case-studies/case1/case1.json",
+      "thumbnail_url" : "/case-studies/case1/case1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Case Study B",
+      "summary": "Short description of Case Study B",
+      "metadata_uri": "/case-studies/case2/case2.json",
+      "thumbnail_url": "/case-studies/case2/case2.jpg"
+    }
+]
+

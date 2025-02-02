@@ -1,0 +1,17 @@
+{
+    "id": 1,
+    "title": "Case Study A",
+    "description": "Detailed information about Case Study A.",
+    "assets": [
+        { 
+            "name": "Case 1 Worksheet", 
+            "file_url": "/case-studies/case1/case1.xlsx" 
+        }
+    ],
+    "questions": [
+        { 
+            "question": "Draw Column Charts for all tables", 
+            "image_uri": null
+        }
+    ]
+}
