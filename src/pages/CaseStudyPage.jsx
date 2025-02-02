@@ -17,7 +17,7 @@ const CaseStudyPage = () => {
     >
 
       {/* Navbar */}
-      <nav className="flex justify-between items-center p-4 shadow-md sticky top-0 bg-white dark:bg-gray-800">
+      <nav className="sticky top-0 flex justify-between items-center p-4 shadow-md  bg-white dark:bg-gray-800 overflow-hidden">
         <h1 className="text-lg md:text-xl lg:text-2xl font-bold">Case Study App</h1>
         <input
           type="text"
@@ -37,26 +37,40 @@ const CaseStudyPage = () => {
       </nav>
 
       {/* Main Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-[calc(100vh-70px)] p-4">
-        {/* Left Box */}
-        <div className="bg-gray-200 dark:bg-gray-700 rounded-lg p-4 h-full shadow-md overflow-hidden">
-          <div className="overflow-y-scroll h-full">
-            {/* Add Content */}
-            <h1 className="text-base md:text-lg lg:text-xl font-semibold">Data Description</h1>
- 
+      <div className="p-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-[calc(100vh-110px)] md:grid-cols-1">
+          {/* Mobile View - Combined Card */}
+          <div className="block lg:hidden bg-gray-200 dark:bg-gray-700 rounded-lg p-4 h-full shadow-md overflow-hidden">
+            <div className="overflow-y-scroll h-full">
+              <h1 className="text-base md:text-lg lg:text-xl font-semibold">Case Study Details</h1>
+              
+              {/* Data Description */}
+              <h2 className="text-sm md:text-base lg:text-lg font-semibold mt-4">Data Description</h2>
+              <p className="text-sm md:text-base lg:text-lg">Detailed case study data description goes here...</p>
+              
+              {/* Visualization Canvas */}
+              <h2 className="text-sm md:text-base lg:text-lg font-semibold mt-4">Visualization Canvas</h2>
+              <p className="text-sm md:text-base lg:text-lg">Graphs and charts will be displayed here...</p>
+            </div>
           </div>
-        </div>
 
-        {/* Right Box */}
-        <div className="bg-gray-200 dark:bg-gray-700 rounded-lg p-4 h-full shadow-md overflow-hidden">
-          <div className="overflow-y-scroll h-full">
-            {/* Add Content */}
-            <h1 className="text-base md:text-lg lg:text-xl font-semibold">Visualization Canvas</h1>
-        
+          {/* Desktop View - Separate Cards */}
+          <div className="hidden lg:block bg-gray-200 dark:bg-gray-700 rounded-lg p-4 h-full shadow-md overflow-hidden">
+            <div className="overflow-y-scroll h-full">
+              <h1 className="text-base md:text-lg lg:text-xl font-semibold">Data Description</h1>
+              <p className="text-sm md:text-base lg:text-lg">Scrollable content goes here...</p>
+            </div>
+          </div>
 
+          <div className="hidden lg:block bg-gray-200 dark:bg-gray-700 rounded-lg p-4 h-full shadow-md overflow-hidden">
+            <div className="overflow-y-scroll h-full">
+              <h1 className="text-base md:text-lg lg:text-xl font-semibold">Visualization Canvas</h1>
+              <p className="text-sm md:text-base lg:text-lg">Scrollable content goes here...</p>
+            </div>
           </div>
         </div>
       </div>
+
     </div>
   );
 };
