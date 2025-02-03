@@ -76,15 +76,16 @@ const CaseStudyPage = () => {
 
           {/* Desktop View - Separate Cards */}
           <div className={"hidden lg:block "+((darkMode) ? ('bg-gray-700 border-1 border-gray-100') : ('bg-gray-200 border-1 border-gray-800'))+" rounded-lg pt-4 pb-4 pl-4 pr-1 h-full shadow-md overflow-hidden"}>
-            <div className="overflow-y-auto h-full">
-              <h1 className="text-base md:text-lg lg:text-xl font-semibold">Data Description</h1>
+            <div><h1 className="text-base md:text-lg lg:text-xl font-semibold">Data Description</h1></div>
+            
+            <div className="overflow-y-auto h-[calc(100vh-11rem)]">
               <p className="text-sm md:text-base lg:text-lg">Scrollable content goes here...</p>
             </div>
           </div>
 
           <div className={"hidden lg:block "+((darkMode) ? ('bg-gray-700 border-1 border-gray-100') : ('bg-gray-200 border-1 border-gray-800'))+" rounded-lg pt-4 pb-4 pl-4 pr-1 h-full shadow-md overflow-hidden"}>
-            <div className="overflow-y-auto h-full">
-              <h1 className="text-base md:text-lg lg:text-xl font-semibold">Visualization Canvas</h1>
+            <div><h1 className="text-base md:text-lg lg:text-xl font-semibold">Visualization Canvas</h1></div>
+            <div className="overflow-y-auto h-[calc(100vh-11rem)]">
               <p className="text-sm md:text-base lg:text-lg">Scrollable content goes here...</p>
             </div>
           </div>
