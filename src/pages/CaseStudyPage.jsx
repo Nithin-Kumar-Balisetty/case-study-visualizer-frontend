@@ -3,22 +3,23 @@ import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 
 const CaseStudyPage = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
 
+  
   return (
     <div
       className={`${
-        darkMode ? "bg-gray-800 text-white" : "bg-white text-black"
+        darkMode ? "bg-gray-800 text-white" : "bg-gray-100 text-black"
       } min-h-screen overflow-hidden`}
     >
 
       {/* Navbar */}
-      <nav className="sticky top-0 flex justify-between items-center p-4 shadow-md  bg-white dark:bg-gray-800 overflow-hidden">
-        <h1 className="text-lg md:text-xl lg:text-2xl font-bold">Case Study App</h1>
+      <nav className="sticky top-0 flex justify-between items-center p-4 shadow-md bg-blue-600 overflow-hidden">
+        <h1 className="text-lg md:text-xl lg:text-2xl font-bold"><Link to="/" className="text-xl font-bold">CaseStudy Visualizer</Link></h1>
         <input
           type="text"
           placeholder="Search Case Studies"
@@ -26,21 +27,21 @@ const CaseStudyPage = () => {
         />
         <button
           onClick={toggleDarkMode}
-          className="bg-gray-200 dark:bg-gray-700 p-2 rounded-lg hover:shadow-md"
+          className={(darkMode ? ('bg-gray-700'):('bg-gray-200')) + " p-2 rounded-lg hover:shadow-md"}
         >
           {darkMode ? (
-            <SunIcon className="h-5 w-5 md:h-6 md:w-6 lg:h-8 lg:w-8 text-yellow-400" />
+            <SunIcon className="h-3 w-3 md:h-4 md:w-4 lg:h-5 lg:w-5 text-yellow-400" />
           ) : (
-            <MoonIcon className="h-5 w-5 md:h-6 md:w-6 lg:h-8 lg:w-8 text-gray-900" />
+            <MoonIcon className="h-3 w-3 md:h-4 md:w-4 lg:h-5 lg:w-5 text-gray-900" />
           )}
         </button>
       </nav>
 
       {/* Main Content */}
       <div className="p-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-[calc(100vh-110px)] md:grid-cols-1">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-[calc(100vh-7rem)] md:grid-cols-1">
           {/* Mobile View - Combined Card */}
-          <div className="block lg:hidden bg-gray-200 dark:bg-gray-700 rounded-lg p-4 h-full shadow-md overflow-hidden">
+          <div className={"block lg:hidden "+ ((darkMode) ? ('bg-gray-700 border-1 border-gray-100') : ('bg-gray-200 border-1 border-gray-800'))+" rounded-lg p-4 h-full shadow-md overflow-hidden"}>
             <div className="overflow-y-scroll h-full">
               <h1 className="text-base md:text-lg lg:text-xl font-semibold">Case Study Details</h1>
               
@@ -55,14 +56,14 @@ const CaseStudyPage = () => {
           </div>
 
           {/* Desktop View - Separate Cards */}
-          <div className="hidden lg:block bg-gray-200 dark:bg-gray-700 rounded-lg p-4 h-full shadow-md overflow-hidden">
+          <div className={"hidden lg:block "+((darkMode) ? ('bg-gray-700 border-1 border-gray-100') : ('bg-gray-200 border-1 border-gray-800'))+" rounded-lg p-4 h-full shadow-md overflow-hidden"}>
             <div className="overflow-y-scroll h-full">
               <h1 className="text-base md:text-lg lg:text-xl font-semibold">Data Description</h1>
               <p className="text-sm md:text-base lg:text-lg">Scrollable content goes here...</p>
             </div>
           </div>
 
-          <div className="hidden lg:block bg-gray-200 dark:bg-gray-700 rounded-lg p-4 h-full shadow-md overflow-hidden">
+          <div className={"hidden lg:block "+((darkMode) ? ('bg-gray-700 border-1 border-gray-100') : ('bg-gray-200 border-1 border-gray-800'))+" rounded-lg p-4 h-full shadow-md overflow-hidden"}>
             <div className="overflow-y-scroll h-full">
               <h1 className="text-base md:text-lg lg:text-xl font-semibold">Visualization Canvas</h1>
               <p className="text-sm md:text-base lg:text-lg">Scrollable content goes here...</p>
