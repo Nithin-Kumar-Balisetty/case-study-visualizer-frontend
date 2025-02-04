@@ -2,11 +2,19 @@ import React, { useState } from "react";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 
+import DataView from "../components/DataView";
+import QuestionsView from "../components/QuestionsView";
+
 const CaseStudyPage = () => {
   const [darkMode, setDarkMode] = useState(true);
+  const [dataView, setDataView] = useState(true);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
+  };
+
+  const toggleDataView = () => {
+    setDataView(!dataView);
   };
 
   
@@ -60,34 +68,54 @@ const CaseStudyPage = () => {
       <div className="p-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-[calc(100vh-7rem)] md:grid-cols-1">
           {/* Mobile View - Combined Card */}
-          <div className={"block lg:hidden "+ ((darkMode) ? ('bg-gray-700 border-1 border-gray-100') : ('bg-gray-200 border-1 border-gray-800'))+" rounded-lg p-4 h-full shadow-md overflow-hidden"}>
+          <div className={"block lg:hidden "+ ((darkMode) ? ('bg-gray-700 border-1 border-gray-100') : ('bg-gray-200 border-1 border-gray-800'))+" rounded-lg p-3 h-full shadow-md overflow-hidden"}>
             <div className="overflow-y-auto h-full">
-              <h1 className="text-base md:text-lg lg:text-xl font-semibold">Case Study Details</h1>
-              
               {/* Data Description */}
-              <h2 className="text-sm md:text-base lg:text-lg font-semibold mt-4">Data Description</h2>
+              <h1 className="text-sm md:text-base lg:text-lg font-semibold">Data Description</h1>
               <p className="text-sm md:text-base lg:text-lg">Detailed case study data description goes here...</p>
               
+              {/* Questions */}
+              <h1 className="text-sm md:text-base lg:text-lg font-semibold mt-4">Questions</h1>
+              <p className="text-sm md:text-base lg:text-lg">Graphs and charts will be displayed here...</p>
+
               {/* Visualization Canvas */}
-              <h2 className="text-sm md:text-base lg:text-lg font-semibold mt-4">Visualization Canvas</h2>
+              <h1 className="text-sm md:text-base lg:text-lg font-semibold mt-4">Visualization Canvas</h1>
               <p className="text-sm md:text-base lg:text-lg">Graphs and charts will be displayed here...</p>
             </div>
           </div>
 
           {/* Desktop View - Separate Cards */}
-          <div className={"hidden lg:block "+((darkMode) ? ('bg-gray-700 border-1 border-gray-100') : ('bg-gray-200 border-1 border-gray-800'))+" rounded-lg pt-4 pb-4 pl-4 pr-1 h-full shadow-md overflow-hidden"}>
-            <div><h1 className="text-base md:text-lg lg:text-xl font-semibold">Data Description</h1></div>
+          <div className={"hidden lg:block "+((darkMode) ? ('bg-gray-700 border-1 border-gray-100') : ('bg-gray-200 border-1 border-gray-800'))+" rounded-lg pb-4 h-full shadow-md overflow-hidden"}>
             
-            <div className="overflow-y-auto h-[calc(100vh-11rem)]">
-              <p className="text-sm md:text-base lg:text-lg">Scrollable content goes here...</p>
+            {/* Left Split Nav Bar*/}
+            <div className={((darkMode) ? ('bg-gray-700 border-b-1 border-gray-100') : ('bg-gray-200 border-b-1 border-gray-800'))}>
+                     
+              <h1 onClick={toggleDataView} className={"inline-block pt-2 pl-3 pb-1 pr-2 text-base md:text-lg lg:text-xl font-semibold " + 
+                  ((darkMode) ? (((dataView) ? ('bg-gray-600 ') : ('')) + 'hover:bg-gray-600') : (((dataView) ? ('bg-gray-400 ') : ('')) + 'hover:bg-gray-400'))}>Data Description</h1>
+
+              <h1 onClick={toggleDataView} className={"inline-block pt-2 pl-3 pb-1 pr-3 text-base md:text-lg lg:text-xl font-semibold " +
+                  ((darkMode) ? (((!dataView) ? ('bg-gray-600 ') : ('')) + 'hover:bg-gray-600') : (((!dataView) ? ('bg-gray-400 ') : ('')) + 'hover:bg-gray-400'))}>Questions</h1>
+            </div>
+            
+             {/* Left split content window */}  
+            <div className="mt-1 pl-3 overflow-y-scroll h-[calc(100vh-11rem)]">
+               
+                {dataView ? (<DataView />) : (<QuestionsView />)}
+                
             </div>
           </div>
 
-          <div className={"hidden lg:block "+((darkMode) ? ('bg-gray-700 border-1 border-gray-100') : ('bg-gray-200 border-1 border-gray-800'))+" rounded-lg pt-4 pb-4 pl-4 pr-1 h-full shadow-md overflow-hidden"}>
-            <div><h1 className="text-base md:text-lg lg:text-xl font-semibold">Visualization Canvas</h1></div>
-            <div className="overflow-y-auto h-[calc(100vh-11rem)]">
+          <div className={"hidden lg:block "+((darkMode) ? ('bg-gray-700 border-1 border-gray-100') : ('bg-gray-200 border-1 border-gray-800'))+" rounded-lg pt-2 pb-4 h-full shadow-md overflow-hidden"}>
+            
+            {/* Right Split Header*/}
+            <div className={((darkMode) ? ('bg-gray-700 border-b-1 border-gray-100') : ('bg-gray-200 border-b-1 border-gray-800'))}>
+              <h1 className="pl-3 mb-1 text-base md:text-lg lg:text-xl font-semibold">Visualization Canvas</h1>
+            </div>
+
+            <div className="mt-1 pl-3 overflow-y-scroll h-[calc(100vh-11rem)]">
               <p className="text-sm md:text-base lg:text-lg">Scrollable content goes here...</p>
             </div>
+
           </div>
         </div>
       </div>
