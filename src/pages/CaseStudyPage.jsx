@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+import { Link, useLocation} from "react-router-dom";
 
 import DataView from "../components/DataView";
 import QuestionsView from "../components/QuestionsView";
@@ -8,6 +8,9 @@ import QuestionsView from "../components/QuestionsView";
 const CaseStudyPage = () => {
   const [darkMode, setDarkMode] = useState(true);
   const [dataView, setDataView] = useState(true);
+
+  const currentEndpoint = useLocation().pathname; // Full path, e.g., "/case-study/1"
+  const caseId = currentEndpoint.split("/case-study/")[1];
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -100,7 +103,7 @@ const CaseStudyPage = () => {
              {/* Left split content window */}  
             <div className="mt-1 pl-3 overflow-y-scroll h-[calc(100vh-11rem)]">
                
-                {dataView ? (<DataView />) : (<QuestionsView />)}
+                {dataView ? (<DataView caseId={caseId} />) : (<QuestionsView caseId={caseId} />)}
                 
             </div>
           </div>
