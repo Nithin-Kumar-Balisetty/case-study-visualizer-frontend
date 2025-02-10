@@ -116,7 +116,7 @@ const CaseStudyPage = () => {
             </div>
 
             <div className="mt-1 pl-3 overflow-y-scroll h-[calc(100vh-11rem)]">
-              <p className="text-sm md:text-base lg:text-lg">Scrollable content goes here...</p>
+              <p className="text-sm md:text-base lg:text-lg">Visualization</p>
             </div>
 
           </div>

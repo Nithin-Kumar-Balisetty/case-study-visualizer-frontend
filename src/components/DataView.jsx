@@ -1,9 +1,15 @@
 import React from "react";
 
-const DataView = () => {
+const DataView = ({ caseId }) => {
   return (
     <div>
-        <p className="text-sm md:text-base lg:text-lg">Data View</p>
+        {/* Case Study Title */}
+        <div>
+
+        </div>
+        
+        
+
     </div>
   );
 };

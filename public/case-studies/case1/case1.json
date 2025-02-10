@@ -11,7 +11,10 @@
     "questions": [
         { 
             "question": "Draw Column Charts for all tables", 
-            "image_uri": null
+            "image_uri": null,
+            "graphs": {
+                
+            }
         }
     ]
 }
