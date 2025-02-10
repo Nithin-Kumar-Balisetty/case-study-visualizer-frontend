@@ -6,7 +6,7 @@ import DataView from "../components/DataView";
 import QuestionsView from "../components/QuestionsView";
 
 const CaseStudyPage = () => {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   const [dataView, setDataView] = useState(true);
 
   const currentEndpoint = useLocation().pathname; // Full path, e.g., "/case-study/1"
