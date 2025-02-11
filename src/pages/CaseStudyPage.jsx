@@ -103,7 +103,7 @@ const CaseStudyPage = () => {
              {/* Left split content window */}  
             <div className="mt-1 pl-3 overflow-y-scroll h-[calc(100vh-11rem)]">
                
-                {dataView ? (<DataView caseId={caseId} />) : (<QuestionsView caseId={caseId} />)}
+                {dataView ? (<DataView caseId={caseId} darkMode={darkMode}/>) : (<QuestionsView caseId={caseId} />)}
                 
             </div>
           </div>

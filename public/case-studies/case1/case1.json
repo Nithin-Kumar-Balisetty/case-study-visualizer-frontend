@@ -20,12 +20,18 @@
                   {
                     "name": "Promotion Period",
                     "rows": [[5, 9]],
-                    "color": "#D4FFD4"
+                    "color": {
+                        "light_color": "#D4FFD4",
+                        "dark_color": "#006312"
+                    }
                   },
                   {
                     "name": "Initial Period",
                     "rows": [[10, 12], [20, 30]],
-                    "color": "#FFFFE0"
+                    "color":{
+                        "light_color": "#FFFFE0",
+                        "dark_color": "#F5D10D"
+                    } 
                   }
                 ]
               }

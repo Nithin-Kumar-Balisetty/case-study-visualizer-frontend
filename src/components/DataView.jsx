@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as XLSX from "xlsx";
 import TableView from "./TableView"; // Importing the reusable component
 
-const DataView = ({ caseId }) => {
+const DataView = ({ caseId, darkMode }) => {
   const [caseData, setCaseData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -93,6 +93,7 @@ const DataView = ({ caseId }) => {
               rowColors={sheet.rowColors} 
               categories={sheet.categories}
               columnFormats={sheet.columnFormats} // Pass column formatting info
+              darkMode = {darkMode}
             />
           ))}
         </>
