@@ -71,7 +71,7 @@ const CaseStudyPage = () => {
       <div className="p-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-[calc(100vh-7rem)] md:grid-cols-1">
           {/* Mobile View - Combined Card */}
-          <div className={"block lg:hidden "+ ((darkMode) ? ('bg-gray-700 border-1 border-gray-100') : ('bg-gray-200 border-1 border-gray-800'))+" rounded-lg p-3 h-full shadow-md overflow-hidden"}>
+          <div className={"block lg:hidden "+ ((darkMode) ? ('bg-gray-700 border-1 border-gray-100') : ('bg-gray-100 border-1 border-gray-800'))+" rounded-lg p-3 h-full shadow-md overflow-hidden"}>
             <div className="overflow-y-auto h-full">
               {/* Data Description */}
               <h1 className="text-sm md:text-base lg:text-lg font-semibold">Data Description</h1>
@@ -88,10 +88,10 @@ const CaseStudyPage = () => {
           </div>
 
           {/* Desktop View - Separate Cards */}
-          <div className={"hidden lg:block "+((darkMode) ? ('bg-gray-700 border-1 border-gray-100') : ('bg-gray-200 border-1 border-gray-800'))+" rounded-lg pb-4 h-full shadow-md overflow-hidden"}>
+          <div className={"hidden lg:block "+((darkMode) ? ('bg-gray-700 border-1 border-gray-100') : ('bg-gray-100 border-1 border-gray-800'))+" rounded-lg pb-4 h-full shadow-md overflow-hidden"}>
             
             {/* Left Split Nav Bar*/}
-            <div className={((darkMode) ? ('bg-gray-700 border-b-1 border-gray-100') : ('bg-gray-200 border-b-1 border-gray-800'))}>
+            <div className={((darkMode) ? ('bg-gray-700 border-b-1 border-gray-100') : ('bg-gray-100 border-b-1 border-gray-800'))}>
                      
               <h1 onClick={toggleDataView} className={"inline-block pt-2 pl-3 pb-1 pr-2 text-base md:text-lg lg:text-xl font-semibold " + 
                   ((darkMode) ? (((dataView) ? ('bg-gray-600 ') : ('')) + 'hover:bg-gray-600') : (((dataView) ? ('bg-gray-400 ') : ('')) + 'hover:bg-gray-400'))}>Data Description</h1>
@@ -108,10 +108,10 @@ const CaseStudyPage = () => {
             </div>
           </div>
 
-          <div className={"hidden lg:block "+((darkMode) ? ('bg-gray-700 border-1 border-gray-100') : ('bg-gray-200 border-1 border-gray-800'))+" rounded-lg pt-2 pb-4 h-full shadow-md overflow-hidden"}>
+          <div className={"hidden lg:block "+((darkMode) ? ('bg-gray-700 border-1 border-gray-100') : ('bg-gray-100 border-1 border-gray-800'))+" rounded-lg pt-2 pb-4 h-full shadow-md overflow-hidden"}>
             
             {/* Right Split Header*/}
-            <div className={((darkMode) ? ('bg-gray-700 border-b-1 border-gray-100') : ('bg-gray-200 border-b-1 border-gray-800'))}>
+            <div className={((darkMode) ? ('bg-gray-700 border-b-1 border-gray-100') : ('bg-gray-100 border-b-1 border-gray-800'))}>
               <h1 className="pl-3 mb-1 text-base md:text-lg lg:text-xl font-semibold">Visualization Canvas</h1>
             </div>
 

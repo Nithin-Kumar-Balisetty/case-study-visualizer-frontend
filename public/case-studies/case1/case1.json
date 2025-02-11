@@ -3,71 +3,49 @@
     "title": "Web Analytics at Quality Alloys, Inc.",
     "Author": "NA",
     "Case ID": "NA",
-    "description": "This spreadsheet accompanies the Web Analytics at Quality Alloys, Inc case. It provides the Excel solutions to the questions in the case.",
+    "description": "This spreadsheet accompanies the Web Analytics case...",
     "assets": [
-        { 
-            "name": "Case 1 Worksheet", 
-            "file_url": "/case-studies/case1/WebAlloysSolutions2024.xls",
-            "sheets": [
-                {
-                    "sheet_name": "Financials",
-                    "row_metadata": {
-                        "start_row": 5,
-                        "end_row": 71,
-                        "legend": {
-
-                            "categories": [
-                                {
-                                    "name": "Initial ShakeDown Period",
-                                    "rows": [[5, 18]],
-                                    "color": "#D4FFD4"
-                                },
-                                {
-                                    "name": "Promotion Period",
-                                    "rows": [[40, 56]],
-                                    "color": "#FFFFE0"
-                                }
-                            ]
-                        }
-                    }
-                },
-                {
-                    "sheet_name": "Weekly Visits",
-                    "row_metadata": {
-                        "start_row": 5,
-                        "end_row": 71,
-                        "legend": {
-                            "categories": [
-                                {
-                                    "name": "Initial ShakeDown Period",
-                                    "rows": [[5, 18]],
-                                    "color": "#D4FFD4"
-                                },
-                                {
-                                    "name": "Promotion Period",
-                                    "rows": [[40, 56]],
-                                    "color": "#FFFFE0"
-                                }
-                            ]
-                        }
-                    }
-                }
-                
-            ]
-
-        }
+      { 
+        "name": "Case 1 Worksheet", 
+        "file_url": "/case-studies/case1/WebAlloysSolutions2024.xls",
+        "sheets": [
+          {
+            "sheet_name": "Financials",
+            "row_metadata": {
+              "start_row": 5,
+              "end_row": 31,
+              "legend": {
+                "header_rows": [1, 2],
+                "categories": [
+                  {
+                    "name": "Promotion Period",
+                    "rows": [[5, 9]],
+                    "color": "#D4FFD4"
+                  },
+                  {
+                    "name": "Initial Period",
+                    "rows": [[10, 12], [20, 30]],
+                    "color": "#FFFFE0"
+                  }
+                ]
+              }
+            },
+            "column_format": {
+              "Revenue": "currency",
+              "Profit": "currency",
+              "Date": "date",
+              "Percentage Growth": "percentage",
+              "Lbs. Sold": "number"
+            }
+          }
+        ]
+      }
     ],
     "questions": [
-        { 
-            "question": "Draw Column Charts for all tables", 
-            "image_uri": null,
-            "graphs": {
-                "Financials": {
-                    "type": "column",
-                    "x_field": "Week (2008-2009)",
-                    "y_field": ["Revenue", "Profit", "Lbs. Sold"]
-                }
-            }
-        }
+      { 
+        "question": "Draw Column Charts for all tables", 
+        "image_uri": null,
+        "graphs": {}
+      }
     ]
-}
+  }
