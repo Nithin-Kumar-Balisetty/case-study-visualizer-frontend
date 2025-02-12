@@ -22,17 +22,25 @@ const formatValue = (value, columnHeader, columnFormats) => {
   }
 };
 
-const TableView = ({ sheetName, dataRows, rowColors, categories, columnFormats, darkMode }) => {
-
+const TableView = ({ sheetIndex, sheetName, dataRows, rowColors, categories, columnFormats, darkMode }) => {
   const [expanded, setExpanded] = useState(false); // State to track if rows are expanded
   const rowsToShow = expanded ? dataRows.slice(1) : dataRows.slice(1, 16); // Show first 15 rows
+  const [editingColumn, setEditingColumn] = useState(null); // Track selected column for editing
 
   if (!dataRows || dataRows.length === 0) return <p>No data available.</p>;
+
+  // Function to handle edit click
+  const handleEditClick = (header) => {
+    console.log(`Editing column: ${header} sheetIndex ${sheetIndex}`);
+    setEditingColumn(header);
+  };
 
   return (
     <div className="mt-6 pr-3">
       {/* Sheet Title */}
-      <h2 className="text-xl font-semibold mb-2"> <span class='font-bold'>Table: </span>{sheetName}</h2>
+      <h2 className="text-xl font-semibold mb-2"> 
+        <span className="font-bold">Table: </span>{sheetName}
+      </h2>
 
       {/* Legend Section */}
       {categories.length > 0 && (
@@ -42,7 +50,7 @@ const TableView = ({ sheetName, dataRows, rowColors, categories, columnFormats, 
             {categories.map((category, index) => (
               <li key={index} className="flex items-center mt-1">
                 <span
-                  style={{ backgroundColor: category.color[darkMode ? 'dark_color': 'light_color'] }}
+                  style={{ backgroundColor: category.color[darkMode ? "dark_color" : "light_color"] }}
                   className="inline-block w-4 h-4 mr-2 rounded"
                 ></span>
                 {category.name}
@@ -58,29 +66,59 @@ const TableView = ({ sheetName, dataRows, rowColors, categories, columnFormats, 
         <thead>
           <tr>
             {dataRows[0].map((header, index) => (
-              <th key={index} className={`border border-gray-400 px-4 py-2 ${darkMode ? 'bg-gray-800' : 'bg-gray-200'}`}>
-                {header}
+              <th 
+                key={index} 
+                className={`border border-gray-400 px-4 py-2 text-center ${darkMode ? 'bg-gray-800' : 'bg-gray-200'}`}
+              >
+                <div className="flex items-center justify-center gap-2">
+                  {header}
+                  <button
+                    onClick={() => handleEditClick(index)}
+                    className="text-gray-500 hover:text-blue-500"
+                  >
+                    {/* Edit Icon */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      strokeWidth="2"
+                      stroke="currentColor"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" />
+                      <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />
+                      <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />
+                      <line x1="16" y1="5" x2="19" y2="8" />
+                    </svg>
+                  </button>
+                </div>
               </th>
             ))}
           </tr>
         </thead> 
+
+        {/* Table Body */}
         <tbody>
           {rowsToShow.map((row, rowIndex) => (
             <tr
               key={rowIndex}
               style={{
-                backgroundColor: rowColors[rowIndex][darkMode ? 'dark_color': 'light_color'] || "transparent", // Apply row color if defined
+                backgroundColor: rowColors[rowIndex][darkMode ? "dark_color" : "light_color"] || "transparent",
               }}
             >
               {row.map((cell, cellIndex) => (
-                <td key={cellIndex} className="border border-gray-400 px-4 py-2">
-                  {formatValue(cell, dataRows[0][cellIndex], columnFormats)} {/* Apply formatting */}
+                <td key={cellIndex} className="border border-gray-400 px-4 py-2 text-center">
+                  {formatValue(cell, dataRows[0][cellIndex], columnFormats)}
                 </td>
               ))}
             </tr>
           ))}
         </tbody>
       </table>
+
       {/* Show More / Show Less Button */}
       {dataRows.length > 16 && (
         <div className="text-center mt-4">
@@ -92,7 +130,6 @@ const TableView = ({ sheetName, dataRows, rowColors, categories, columnFormats, 
           </button>
         </div>
       )}
-
     </div>
   );
 };

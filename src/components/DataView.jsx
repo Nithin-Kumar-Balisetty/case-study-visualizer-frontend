@@ -88,6 +88,7 @@ const DataView = ({ caseId, darkMode }) => {
           {sheetsData.map((sheet, sheetIndex) => (
             <TableView 
               key={sheetIndex}
+              sheetIndex={sheetIndex}
               sheetName={sheet.sheetName} 
               dataRows={sheet.dataRows} 
               rowColors={sheet.rowColors} 
