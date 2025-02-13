@@ -24,30 +24,42 @@ const formatValue = (value, columnHeader, columnFormats) => {
 };
 
 const TableView = ({ sheetIndex, sheetName, dataRows, rowColors, categories, columnFormats, darkMode }) => {
-   const { selectedColumn, columnData, selectedSheet, selectColumn, setSelectedSheet, updateColumnValues } = useColumnContext();
+  const { selectedColumn, columnData, selectedSheet, selectColumn, setOriginalColumnData } = useColumnContext();
   
   const [expanded, setExpanded] = useState(false); // State to track if rows are expanded
-  const rowsToShow = expanded ? dataRows.slice(1) : dataRows.slice(1, 16); // Show first 15 rows
+  const [clickedColumn, setClickedColumn] = useState(null);
+  const [updatedDataRows, setUpdatedDataRows] = useState([...dataRows]);
+  
+  const rowsToShow = expanded ? updatedDataRows.slice(1) : updatedDataRows.slice(1, 16); // Show first 15 rows
 
   if (!dataRows || dataRows.length === 0) return <p>No data available.</p>;
 
   // Function to handle edit click
   const handleEditClick = (columnIndex) => {
+    setClickedColumn(columnIndex);
     selectColumn(columnIndex, 
             sheetIndex, 
-            dataRows.slice(1).map(row => row[columnIndex]),
+            updatedDataRows.slice(1).map(row => row[columnIndex]),
             {
-              'sheetName' : sheetName,
+              'sheetName' : sheetName,    
               'columnName': dataRows[0][columnIndex]
-            }  
+            },
+            dataRows.slice(1).map(row => row[columnIndex])
       );
   };
 
-  useEffect(()=>{
-    for(let i=1;i<dataRows.length;i++){
-      dataRows[i][selectedColumn] = columnData[i-1];
+  useEffect(() => {
+    if (clickedColumn !== null && clickedColumn === selectedColumn && selectedSheet === sheetIndex) {
+      setUpdatedDataRows((prevDataRows) => {
+        const newDataRows = [...prevDataRows]; // Clone the dataRows array
+        for (let i = 1; i < newDataRows.length; i++) {
+          newDataRows[i] = [...newDataRows[i]]; // Clone each row
+          newDataRows[i][selectedColumn] = columnData[i - 1]; // Update the column value
+        }
+        return newDataRows;
+      });
     }
-  },[columnData])
+  }, [columnData, selectedColumn, selectedSheet]);
 
   return (
     <div className="mt-6 pr-3">
@@ -79,7 +91,7 @@ const TableView = ({ sheetIndex, sheetName, dataRows, rowColors, categories, col
         {/* Table Header */}
         <thead>
           <tr>
-            {dataRows[0].map((header, index) => (
+            {updatedDataRows[0].map((header, index) => (
               <th 
                 key={index} 
                 className={`border border-gray-400 px-4 py-2 text-center ${darkMode ? 'bg-gray-800' : 'bg-gray-200'}`}
@@ -134,7 +146,7 @@ const TableView = ({ sheetIndex, sheetName, dataRows, rowColors, categories, col
       </table>
 
       {/* Show More / Show Less Button */}
-      {dataRows.length > 16 && (
+      {updatedDataRows.length > 16 && (
         <div className="text-center mt-4">
           <button
             onClick={() => setExpanded(!expanded)}
