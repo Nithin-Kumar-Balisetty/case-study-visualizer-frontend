@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useColumnContext } from "../context/ColumnContext";
 
 // Function to format values based on metadata
 const formatValue = (value, columnHeader, columnFormats) => {
@@ -23,17 +24,30 @@ const formatValue = (value, columnHeader, columnFormats) => {
 };
 
 const TableView = ({ sheetIndex, sheetName, dataRows, rowColors, categories, columnFormats, darkMode }) => {
+   const { selectedColumn, columnData, selectedSheet, selectColumn, setSelectedSheet, updateColumnValues } = useColumnContext();
+  
   const [expanded, setExpanded] = useState(false); // State to track if rows are expanded
   const rowsToShow = expanded ? dataRows.slice(1) : dataRows.slice(1, 16); // Show first 15 rows
-  const [editingColumn, setEditingColumn] = useState(null); // Track selected column for editing
 
   if (!dataRows || dataRows.length === 0) return <p>No data available.</p>;
 
   // Function to handle edit click
-  const handleEditClick = (header) => {
-    console.log(`Editing column: ${header} sheetIndex ${sheetIndex}`);
-    setEditingColumn(header);
+  const handleEditClick = (columnIndex) => {
+    selectColumn(columnIndex, 
+            sheetIndex, 
+            dataRows.slice(1).map(row => row[columnIndex]),
+            {
+              'sheetName' : sheetName,
+              'columnName': dataRows[0][columnIndex]
+            }  
+      );
   };
+
+  useEffect(()=>{
+    for(let i=1;i<dataRows.length;i++){
+      dataRows[i][selectedColumn] = columnData[i-1];
+    }
+  },[columnData])
 
   return (
     <div className="mt-6 pr-3">
