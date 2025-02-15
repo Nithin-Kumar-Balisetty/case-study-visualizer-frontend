@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react'
-import { useColumnContext } from "../context/ColumnContext"; // Import context
+import { useColumnContext } from "../../context/ColumnContext"; // Import context
 
 function DataVisualizationCanvas() {
     const {originalColumnData, columnData, metaData, updateColumnValues, setActiveSource, resetColumnValues} = useColumnContext();

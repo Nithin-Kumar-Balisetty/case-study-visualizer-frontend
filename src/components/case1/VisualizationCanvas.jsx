@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DataVisualizationCanvas from "./DataVisualizationCanvas";
 import QuestionVisualizationCanvas from "./QuestionVisualizationCanvas";
-import { useColumnContext } from "../context/ColumnContext"; // Import context
+import { useColumnContext } from "../../context/ColumnContext"; // Import context
 
 const VisualizationCanvas = () => {
     const {activeSource} = useColumnContext();

@@ -1,5 +1,5 @@
 import React, {useContext, useState, useEffect} from 'react'
-import { useColumnContext } from "../context/ColumnContext"; // Import context
+import { useColumnContext } from "../../context/ColumnContext"; // Import context
 
 function QuestionVisualizationCanvas() {
   return (

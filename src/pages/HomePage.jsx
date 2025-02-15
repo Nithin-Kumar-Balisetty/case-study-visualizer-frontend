@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CaseCard from "../components/CaseCard";
+import CaseCard from "../components/case1/CaseCard";
 import HomeNavbar from "../components/HomeNavbar";
 
 const HomePage = () => {

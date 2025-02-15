@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 import { Link, useLocation} from "react-router-dom";
 
-import DataView from "../components/DataView";
-import QuestionsView from "../components/QuestionsView";
-import VisualizationCanvas from "../components/VisualizationCanvas";
-import fetchAllSheets from "../dataloader/fetchAllSheets";
+import DataView from "../../components/case1/DataView";
+import QuestionsView from "../../components/case1/QuestionsView";
+import VisualizationCanvas from "../../components/case1/VisualizationCanvas";
+import fetchAllSheets from "../../dataloader/fetchAllSheets";
 
 
 const CaseStudyPage = () => {

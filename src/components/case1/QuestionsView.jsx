@@ -1,6 +1,5 @@
 import React, {useEffect, useState, useContext} from "react";
-import SampleTableView from "./SampTableView";
-import { useColumnContext } from "../context/ColumnContext";
+import { useColumnContext } from "../../context/ColumnContext";
 
 const QuestionsView = ({ caseId, caseData, darkMode, sheetsData, forceRender}) => {
   const {setActiveSource} = useColumnContext();

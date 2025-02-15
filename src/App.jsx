@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import CaseStudyPage from "./pages/CaseStudyPage"; // To be implemented next
+import CaseStudyPage from "./pages/case1/CaseStudyPage"; // To be implemented next
 import { ColumnProvider } from "./context/ColumnContext";
 import './App.css'
 
