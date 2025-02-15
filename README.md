@@ -23,7 +23,6 @@ Before you begin, ensure you have **Node.js** installed on your machine:
    npm install
    ```
 
----
 
 ## **▶ Running the Application**
 ### **🔹 Start Development Server**
@@ -37,9 +36,8 @@ http://localhost:5173/
 ```
 (_The port may vary; check your terminal output for the correct address._)
 
-```
 
----
+
 
 ## **🔧 Project Structure**
 ```
