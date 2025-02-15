@@ -1,0 +1,8 @@
+input[type="range"][orient="vertical"] {
+    writing-mode: vertical-lr;
+    direction: rtl;
+    width: 2rem;
+    height: 10rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
