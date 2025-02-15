@@ -24,7 +24,7 @@ const formatValue = (value, columnHeader, columnFormats) => {
 };
 
 const TableView = ({ sheetIndex, sheetName, dataRows, rowColors, categories, columnFormats, updateSheets, darkMode }) => {
-  const { selectedColumn, columnData, selectedSheet, selectColumn, setOriginalColumnData } = useColumnContext();
+  const { selectedColumn, columnData, selectedSheet, selectColumn, setActiveSource } = useColumnContext();
   
   const [expanded, setExpanded] = useState(false); // State to track if rows are expanded
   const [clickedColumn, setClickedColumn] = useState(null);
@@ -46,6 +46,7 @@ const TableView = ({ sheetIndex, sheetName, dataRows, rowColors, categories, col
             },
             dataRows.slice(1).map(row => row[columnIndex])
       );
+    setActiveSource("Data");
   };
 
   useEffect(() => {
@@ -66,7 +67,6 @@ const TableView = ({ sheetIndex, sheetName, dataRows, rowColors, categories, col
   useEffect(() => {
     if (selectedColumn !== null && selectedSheet !== null) {
       updateSheets(selectedSheet, selectedColumn, columnData);
-      console.log('Trigger');
     }
   }, [updatedDataRows]); 
 

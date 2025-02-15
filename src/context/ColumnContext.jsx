@@ -10,6 +10,7 @@ export const ColumnProvider = ({ children }) => {
   const [selectedSheet, setSelectedSheet] = useState(null);  // Track Sheet Index
   const [metaData, setMetaData] = useState(null); // Tracks Metadata of the sheet
   const [originalColumnData, setOriginalColumnData] = useState([]);  // Holds Original Data of Column
+  const [activeSource, setActiveSource] = useState(null); // "table" or "question"
 
   // Set selected column and its data
   const selectColumn = (columnIndex,sheetIndex, data, metadata, originalData) => {
@@ -31,7 +32,7 @@ export const ColumnProvider = ({ children }) => {
   }
 
   return (
-    <ColumnContext.Provider value={{ selectedColumn, columnData, selectedSheet, metaData, selectColumn, setSelectedSheet, updateColumnValues, resetColumnValues , setOriginalColumnData }}>
+    <ColumnContext.Provider value={{ activeSource, originalColumnData, selectedColumn, columnData, selectedSheet, metaData, selectColumn, setSelectedSheet, updateColumnValues, resetColumnValues, setActiveSource, setOriginalColumnData }}>
       {children}
     </ColumnContext.Provider>
   );
