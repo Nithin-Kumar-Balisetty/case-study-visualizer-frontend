@@ -23,7 +23,7 @@ const formatValue = (value, columnHeader, columnFormats) => {
   }
 };
 
-const TableView = ({ sheetIndex, sheetName, dataRows, rowColors, categories, columnFormats, darkMode }) => {
+const TableView = ({ sheetIndex, sheetName, dataRows, rowColors, categories, columnFormats, updateSheets, darkMode }) => {
   const { selectedColumn, columnData, selectedSheet, selectColumn, setOriginalColumnData } = useColumnContext();
   
   const [expanded, setExpanded] = useState(false); // State to track if rows are expanded
@@ -56,10 +56,19 @@ const TableView = ({ sheetIndex, sheetName, dataRows, rowColors, categories, col
           newDataRows[i] = [...newDataRows[i]]; // Clone each row
           newDataRows[i][selectedColumn] = columnData[i - 1]; // Update the column value
         }
+    
         return newDataRows;
       });
+    
     }
   }, [columnData, selectedColumn, selectedSheet]);
+
+  useEffect(() => {
+    if (selectedColumn !== null && selectedSheet !== null) {
+      updateSheets(selectedSheet, selectedColumn, columnData);
+      console.log('Trigger');
+    }
+  }, [updatedDataRows]); 
 
   return (
     <div className="mt-6 pr-3">

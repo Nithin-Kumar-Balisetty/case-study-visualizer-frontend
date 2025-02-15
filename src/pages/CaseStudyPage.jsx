@@ -1,27 +1,73 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 import { Link, useLocation} from "react-router-dom";
 
 import DataView from "../components/DataView";
 import QuestionsView from "../components/QuestionsView";
-import { ColumnProvider } from "../context/ColumnContext";
 import VisualizationCanvas from "../components/VisualizationCanvas";
+import fetchAllSheets from "../dataloader/fetchAllSheets";
+
 
 const CaseStudyPage = () => {
+  
+  const currentEndpoint = useLocation().pathname; // Full path, e.g., "/case-study/1"
+  const caseId = currentEndpoint.split("/case-study/")[1];
+  
   const [darkMode, setDarkMode] = useState(false);
   const [dataView, setDataView] = useState(true);
 
-  const currentEndpoint = useLocation().pathname; // Full path, e.g., "/case-study/1"
-  const caseId = currentEndpoint.split("/case-study/")[1];
+  const [caseData, setCaseData] = useState(null);
+  const [sheetsData, setSheetsData] = useState([]); // Holds parsed data for all sheets
+  const [updatedSheetsData, setUpdatedSheetsData] = useState([]); // Holds updated parsed data for all sheets
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const toggleDataView = () => {
-    setDataView(!dataView);
-  };
 
+  const updateSheets = (sheetIndex,columnIndex, columnData)=>{
+
+     setUpdatedSheetsData((prevSheets) => {
+      const newSheets = [...prevSheets]; 
+      newSheets[sheetIndex] = { 
+        ...prevSheets[sheetIndex], 
+        dataRows: prevSheets[sheetIndex].dataRows.map((row, rowIdx) =>
+          rowIdx === 0 ? row : [...row.slice(0, columnIndex), columnData[rowIdx - 1], ...row.slice(columnIndex + 1)]
+        ),
+      };
+  
+      return newSheets; 
+    });
+    
+  }
+
+
+  useEffect(() => {
+    if (!caseId) return;
+
+    const fetchCaseData = async () => {
+      try {
+        const response = await fetch(`/case-studies/case${caseId}/case${caseId}.json`);
+        if (!response.ok) throw new Error("Failed to fetch case study data");
+
+        const data = await response.json();
+        setCaseData(data);
+
+        if (data.assets && data.assets.length > 0) {
+          const excelFileUrl = data.assets[0].file_url;
+          await fetchAllSheets(excelFileUrl, data.assets[0].sheets, setSheetsData, setUpdatedSheetsData);
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCaseData();
+  }, []);
+
+
+  
   
   return (
     <div
@@ -54,11 +100,12 @@ const CaseStudyPage = () => {
         <h1 className="text-lg md:text-xl lg:text-2xl font-bold"><Link to="/" className="text-xl font-bold">CaseStudy Visualizer</Link></h1>
         <input
           type="text"
+          name = 'searchbox'
           placeholder="Search Case Studies"
           className="hidden md:block border px-2 py-1 rounded-lg focus:outline-none dark:bg-gray-600 dark:text-white w-1/2 text-sm md:text-base lg:text-lg"
         />
         <button
-          onClick={toggleDarkMode}
+          onClick={()=> setDarkMode(!darkMode)}
           className={(darkMode ? ('bg-gray-700'):('bg-gray-200')) + " p-2 rounded-lg hover:shadow-md"}
         >
           {darkMode ? (
@@ -69,7 +116,7 @@ const CaseStudyPage = () => {
         </button>
       </nav>
 
-     <ColumnProvider>
+     
           {/* Main Content */}
           <div className="p-4">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-[calc(100vh-7rem)] md:grid-cols-1">
@@ -96,17 +143,25 @@ const CaseStudyPage = () => {
                   {/* Left Split Nav Bar*/}
                   <div className={((darkMode) ? ('bg-gray-700 border-b-1 border-gray-100') : ('bg-gray-100 border-b-1 border-gray-800'))}>
                           
-                    <h1 onClick={toggleDataView} className={"inline-block pt-2 pl-3 pb-1 pr-2 text-base md:text-lg lg:text-xl font-semibold " + 
+                    <h1 onClick={()=> setDataView(!dataView)} className={"inline-block pt-2 pl-3 pb-1 pr-2 text-base md:text-lg lg:text-xl font-semibold " + 
                         ((darkMode) ? (((dataView) ? ('bg-gray-600 ') : ('')) + 'hover:bg-gray-600') : (((dataView) ? ('bg-gray-400 ') : ('')) + 'hover:bg-gray-400'))}>Data Description</h1>
 
-                    <h1 onClick={toggleDataView} className={"inline-block pt-2 pl-3 pb-1 pr-3 text-base md:text-lg lg:text-xl font-semibold " +
+                    <h1 onClick={()=> setDataView(!dataView)} className={"inline-block pt-2 pl-3 pb-1 pr-3 text-base md:text-lg lg:text-xl font-semibold " +
                         ((darkMode) ? (((!dataView) ? ('bg-gray-600 ') : ('')) + 'hover:bg-gray-600') : (((!dataView) ? ('bg-gray-400 ') : ('')) + 'hover:bg-gray-400'))}>Questions</h1>
                   </div>
                   
                   {/* Left split content window */}  
                   <div className="mt-1 pl-3 overflow-y-scroll h-[calc(100vh-11rem)]">
-                    
-                      {dataView ? (<DataView caseId={caseId} darkMode={darkMode}/>) : (<QuestionsView caseId={caseId} />)}
+                      
+                      <div className={(dataView)? 'block': 'hidden'}>
+                          <DataView darkMode={darkMode} caseData={caseData} updateSheets={updateSheets}
+                                    loading={loading} error={error} sheetsData={sheetsData}/>
+                      </div>
+
+                      <div className={(!dataView)? 'block': 'hidden'}>
+                          <QuestionsView caseId={caseId} caseData={caseData}
+                               sheetsData={updatedSheetsData} darkMode={darkMode} />
+                      </div>
                       
                   </div>
                 </div>
@@ -125,7 +180,6 @@ const CaseStudyPage = () => {
                 </div>
               </div>
           </div>
-      </ColumnProvider>
 
     </div>
   );
