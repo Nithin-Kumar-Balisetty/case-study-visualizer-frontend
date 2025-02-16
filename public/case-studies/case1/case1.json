@@ -41,7 +41,8 @@
               "Profit": "currency",
               "Date": "date",
               "Percentage Growth": "percentage",
-              "Lbs. Sold": "number"
+              "Lbs. Sold": "number",
+              "Inquiries" : "number"
             }
           },
           {
@@ -72,11 +73,8 @@
               }
             },
             "column_format": {
-              "Revenue": "currency",
-              "Profit": "currency",
-              "Date": "date",
-              "Percentage Growth": "percentage",
-              "Lbs. Sold": "number"
+              "Day": "date",
+              "Visits": "number"
             }
           }
         ]

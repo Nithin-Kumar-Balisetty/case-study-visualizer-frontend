@@ -70,6 +70,7 @@ const TableView = ({ sheetIndex, sheetName, dataRows, rowColors, categories, col
     }
   }, [updatedDataRows]); 
 
+
   return (
     <div className="mt-6 pr-3">
       {/* Sheet Title */}
@@ -96,63 +97,71 @@ const TableView = ({ sheetIndex, sheetName, dataRows, rowColors, categories, col
       )}
 
       {/* Table */}
-      <table className="table-auto w-full border-collapse border border-gray-400">
-        {/* Table Header */}
-        <thead>
-          <tr>
-            {updatedDataRows[0].map((header, index) => (
-              <th 
-                key={index} 
-                className={`border border-gray-400 px-4 py-2 text-center ${darkMode ? 'bg-gray-800' : 'bg-gray-200'}`}
-              >
-                <div className="flex items-center justify-center gap-2">
-                  {header}
-                  <button
-                    onClick={() => handleEditClick(index)}
-                    className="text-gray-500 hover:text-blue-500"
+      <div className="flex flex-col items-center">
+          <table className="table-auto border-collapse border border-gray-400">
+            {/* Table Header */}
+            <thead>
+              <tr>
+                {updatedDataRows[0].map((header, index) => (
+                  <th 
+                    key={index} 
+                    className={`border border-gray-400 px-4 py-2 text-center ${darkMode ? 'bg-gray-800' : 'bg-gray-200'}`}
                   >
-                    {/* Edit Icon */}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      strokeWidth="2"
-                      stroke="currentColor"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" />
-                      <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />
-                      <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />
-                      <line x1="16" y1="5" x2="19" y2="8" />
-                    </svg>
-                  </button>
-                </div>
-              </th>
-            ))}
-          </tr>
-        </thead> 
+                    <div className="flex items-center justify-center gap-2">
+                      {header}
 
-        {/* Table Body */}
-        <tbody>
-          {rowsToShow.map((row, rowIndex) => (
-            <tr
-              key={rowIndex}
-              style={{
-                backgroundColor: rowColors[rowIndex][darkMode ? "dark_color" : "light_color"] || "transparent",
-              }}
-            >
-              {row.map((cell, cellIndex) => (
-                <td key={cellIndex} className="border border-gray-400 px-4 py-2 text-center">
-                  {formatValue(cell, dataRows[0][cellIndex], columnFormats)}
-                </td>
+                      {(['currency','number','percentage'].includes(columnFormats[header])) ? 
+                          (<button
+                            onClick={() => handleEditClick(index)}
+                            className="text-gray-500 hover:text-blue-500"
+                          >
+                            {/* Edit Icon */}
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              strokeWidth="2"
+                              stroke="currentColor"
+                              fill="none"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <path stroke="none" d="M0 0h24v24H0z" />
+                              <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />
+                              <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />
+                              <line x1="16" y1="5" x2="19" y2="8" />
+                            </svg>
+                          </button>)
+                          
+                          : <></> 
+                      }
+                      
+                    </div>
+                  </th>
+                ))}
+              </tr>
+            </thead> 
+
+            {/* Table Body */}
+            <tbody>
+              {rowsToShow.map((row, rowIndex) => (
+                <tr
+                  key={rowIndex}
+                  style={{
+                    backgroundColor: rowColors[rowIndex][darkMode ? "dark_color" : "light_color"] || "transparent",
+                  }}
+                >
+                  {row.map((cell, cellIndex) => (
+                    <td key={cellIndex} className="border border-gray-400 px-4 py-2 text-center">
+                      {formatValue(cell, dataRows[0][cellIndex], columnFormats)}
+                    </td>
+                  ))}
+                </tr>
               ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+            </tbody>
+          </table>
+      </div>
 
       {/* Show More / Show Less Button */}
       {updatedDataRows.length > 16 && (
