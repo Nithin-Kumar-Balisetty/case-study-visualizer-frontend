@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import DescriptiveStatistics from "./pages/case1/CaseStudyPage"; // To be implemented next
 import Summarization from './pages/case2/CaseStudyPage';
+import SpamClassifier from './pages/case3/CaseStudyPage';
 
 import { ColumnProvider } from "./context/ColumnContext";
 import './App.css'
@@ -24,6 +25,12 @@ const App = () => {
         <Route path="/case-study/2" element={
           <ColumnProvider>
           <Summarization />
+          </ColumnProvider>
+        } />
+
+      <Route path="/case-study/3" element={
+          <ColumnProvider>
+          <SpamClassifier />
           </ColumnProvider>
         } />
         

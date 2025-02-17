@@ -12,6 +12,13 @@
       "summary": "Underatand how Summarization Works",
       "metadata_uri": "/case-studies/case2/case2.json",
       "thumbnail_url": "/case-studies/case2/case2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Spam Classifier",
+      "summary": "Underatand how Spam Classification Works",
+      "metadata_uri": "/case-studies/case2/case2.json",
+      "thumbnail_url": "/case-studies/case2/case2.jpg"
     }
 ]
 
