@@ -1,15 +1,15 @@
 [
     {
       "id": 1,
-      "title": "Case Study A",
-      "summary": "Short description of Case Study A",
+      "title": "Web Analytics at Quality Alloys, Inc.",
+      "summary": "Understand how descriptive statistics are used to understand the data",
       "metadata_uri": "/case-studies/case1/case1.json",
       "thumbnail_url" : "/case-studies/case1/case1.jpg"
     },
     {
       "id": 2,
-      "title": "Case Study B",
-      "summary": "Short description of Case Study B",
+      "title": "Summarization",
+      "summary": "Underatand how Summarization Works",
       "metadata_uri": "/case-studies/case2/case2.json",
       "thumbnail_url": "/case-studies/case2/case2.jpg"
     }
