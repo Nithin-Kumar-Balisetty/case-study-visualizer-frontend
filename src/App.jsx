@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import DescriptiveStatistics from "./pages/case1/CaseStudyPage"; // To be implemented next
 import Summarization from './pages/case2/CaseStudyPage';
 import SpamClassifier from './pages/case3/CaseStudyPage';
+import SentimentAnalyzer from './pages/case4/CaseStudyPage';
 
 import { ColumnProvider } from "./context/ColumnContext";
 import './App.css'
@@ -31,6 +32,12 @@ const App = () => {
       <Route path="/case-study/3" element={
           <ColumnProvider>
           <SpamClassifier />
+          </ColumnProvider>
+        } />
+
+      <Route path="/case-study/4" element={
+          <ColumnProvider>
+          <SentimentAnalyzer />
           </ColumnProvider>
         } />
         
