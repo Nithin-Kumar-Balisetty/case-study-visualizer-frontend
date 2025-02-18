@@ -1,25 +1,25 @@
 {
     "id": 1,
-    "title": "Web Analytics at Quality Alloys, Inc.",
+    "title": "Web Analytics at QualMart",
     "Author": "NA",
     "Case ID": "NA",
     "description": "This spreadsheet accompanies the Web Analytics case",
     "assets": [
       { 
         "name": "Case 1 Worksheet", 
-        "file_url": "/case-studies/case1/WebAlloysSolutions2024.xls",
+        "file_url": "/case-studies/case1/QualMart.xls",
         "sheets": [
           {
-            "sheet_name": "Financials",
+            "sheet_name": "Finances",
             "row_metadata": {
-              "start_row": 5,
+              "start_row": 4,
               "end_row": 31,
               "legend": {
                 "header_rows": [1, 2],
                 "categories": [
                   {
                     "name": "Promotion Period",
-                    "rows": [[5, 9]],
+                    "rows": [[4, 9]],
                     "color": {
                         "light_color": "#D4FFD4",
                         "dark_color": "#006312"
@@ -39,14 +39,14 @@
             "column_format": {
               "Revenue": "currency",
               "Profit": "currency",
-              "Date": "date",
+              "Day": "text",
               "Percentage Growth": "percentage",
               "Lbs. Sold": "number",
               "Inquiries" : "number"
             }
           },
           {
-            "sheet_name": "Daily Visits",
+            "sheet_name": "Visits",
             "row_metadata": {
               "start_row": 5,
               "end_row": 31,
