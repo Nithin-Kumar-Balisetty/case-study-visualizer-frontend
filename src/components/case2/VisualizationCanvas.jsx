@@ -10,7 +10,7 @@ const VisualizationCanvas = ({darkMode}) => {
     setLoading(true);
     setOutput(null);
     try {
-      const response = await fetch("http://127.0.0.1:5000/summary", {
+      const response = await fetch("http://127.0.0.1:5011/summary", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -63,7 +63,7 @@ const VisualizationCanvas = ({darkMode}) => {
                 
             </div>
 
-            <p className="text-lg"><strong>Similarity Score:</strong> {output.similarity.toFixed(2)}</p>
+            <p className="text-lg"><strong>Similarity Score between Extracted and Abstracted summary:</strong> {output.similarity.toFixed(2)}</p>
 
         </div>
       )}
