@@ -12,10 +12,9 @@ Before you begin, ensure you have **Node.js** installed on your machine:
 - Install/update **Node.js** from: [https://nodejs.org/](https://nodejs.org/)
 
 ### **📥 Installation Steps**
-1. **Clone the Repository**
+1. **Move to the Working Directory**
    ```sh
-   git clone https://github.com/your-repo-url/case-study-visualizer.git
-   cd case-study-visualizer
+   cd case-study-visualizer-frontend
    ```
 
 2. **Install Dependencies**
