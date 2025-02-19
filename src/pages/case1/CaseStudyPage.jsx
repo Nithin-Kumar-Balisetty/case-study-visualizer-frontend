@@ -98,12 +98,7 @@ const CaseStudyPage = () => {
       {/* Navbar */}
       <nav className="sticky top-0 flex justify-between items-center p-4 shadow-md bg-blue-600 overflow-hidden">
         <h1 className="text-lg md:text-xl lg:text-2xl font-bold"><Link to="/" className="text-xl font-bold">CaseStudy Visualizer</Link></h1>
-        <input
-          type="text"
-          name = 'searchbox'
-          placeholder="Search Case Studies"
-          className="hidden md:block border px-2 py-1 rounded-lg focus:outline-none dark:bg-gray-600 dark:text-white w-1/2 text-sm md:text-base lg:text-lg"
-        />
+        
         <button
           onClick={()=> setDarkMode(!darkMode)}
           className={(darkMode ? ('bg-gray-700'):('bg-gray-200')) + " p-2 rounded-lg hover:shadow-md"}

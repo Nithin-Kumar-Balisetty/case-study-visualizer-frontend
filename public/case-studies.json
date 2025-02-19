@@ -26,6 +26,13 @@
       "summary": "Understand how Sentiment Analysis Works",
       "metadata_uri": "/case-studies/case2/case2.json",
       "thumbnail_url": "/case-studies/case2/case2.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Text Classification",
+      "summary": "Understand how Text Classification Works",
+      "metadata_uri": "/case-studies/case2/case2.json",
+      "thumbnail_url": "/case-studies/case2/case2.jpg"
     }
 ]
 

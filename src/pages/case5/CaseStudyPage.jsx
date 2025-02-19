@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 import { Link, useLocation} from "react-router-dom";
 
-import DataView from "../../components/case4/DataView";
-import VisualizationCanvas from "../../components/case4/VisualizationCanvas";
+import DataView from "../../components/case5/DataView";
+import VisualizationCanvas from "../../components/case5/VisualizationCanvas";
 
 const CaseStudyPage = () => {
   
@@ -139,7 +139,7 @@ const CaseStudyPage = () => {
                   
                   {/* Right Split Header*/}
                   <div className={((darkMode) ? ('bg-gray-700 border-b-1 border-gray-100') : ('bg-gray-100 border-b-1 border-gray-800'))}>
-                    <h1 className="pl-3 mb-1 text-base md:text-lg lg:text-xl font-semibold">Live Sentiment Analysis</h1>
+                    <h1 className="pl-3 mb-1 text-base md:text-lg lg:text-xl font-semibold">Live Text Classifier</h1>
                   </div>
 
                   <div className="mt-1 pl-3 overflow-y-scroll h-[calc(100vh-11rem)]">
